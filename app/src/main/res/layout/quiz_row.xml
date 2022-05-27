@@ -7,6 +7,7 @@
     android:background="@drawable/quiz_box_1">
 
     <TextView
+        android:id="@+id/quiz_Name_quizRow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="30dp"
@@ -19,6 +20,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/quiz_Point_quizRow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="30/60"

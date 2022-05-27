@@ -1,12 +1,14 @@
 package com.example.doanquiz;
 
 public class Quiz {
+    private String name;
     private Integer position;
     private String URL;
     private int numQuestion;
     private int point;
 
-    public Quiz(Integer position, String URL, int numQuestion, int point) {
+    public Quiz(String name, Integer position, String URL, int numQuestion, int point) {
+        this.name = name;
         this.position = position;
         this.URL = URL;
         this.numQuestion = numQuestion;
@@ -14,6 +16,14 @@ public class Quiz {
     }
 
     public Quiz() {
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Integer getPosition() {
