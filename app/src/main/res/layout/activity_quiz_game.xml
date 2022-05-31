@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".quiz_game">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="108dp"
+        android:text="Quiz"
+        android:textSize="32sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="#FFAF00"/>
+
+    <TextView
+        android:id="@+id/counter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:hint="1/100"
+        android:textColorHint="#FFAF00"
+        android:textColor="#FFAF00"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@id/question"
+        app:layout_constraintEnd_toEndOf="@id/question" />
+
+
+    <TextView
+        android:id="@+id/question"
+        android:layout_width="351dp"
+        android:layout_height="108dp"
+        android:gravity="center"
+        android:textColor="#FFAF00"
+        android:textSize="16sp"
+        android:hint="hello this is where you're going to put your question"
+        android:background="@color/black"
+        android:textColorHint="#FFAF00"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title"
+        app:layout_constraintVertical_bias=".2" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/question"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias=".2">
+
+        <ImageButton
+            android:id="@+id/previous_Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:backgroundTint="#0F0F0D"
+            app:srcCompat="@android:drawable/ic_media_previous"
+            android:layout_margin="5dp"
+            android:contentDescription="back"/>
+
+        <Button
+            android:id="@+id/true_Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:backgroundTint="#0F0F0D"
+            android:text="True"
+            android:textColor="#FFAF00" />
+
+        <Button
+            android:id="@+id/false_Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="false"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            android:backgroundTint="#0F0F0D"
+            android:textColor="#FFAF00"/>
+
+        <ImageButton
+            android:id="@+id/next_Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:visibility="invisible"
+            app:srcCompat="@android:drawable/ic_media_next"
+            android:layout_margin="5dp"
+            android:contentDescription="next"
+            app:backgroundTint="#0F0F0D"/>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

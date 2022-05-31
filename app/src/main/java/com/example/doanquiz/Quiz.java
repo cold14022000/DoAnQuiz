@@ -2,20 +2,28 @@ package com.example.doanquiz;
 
 public class Quiz {
     private String name;
-    private Integer position;
     private String URL;
     private int numQuestion;
     private int point;
+    private String quizId;
 
-    public Quiz(String name, Integer position, String URL, int numQuestion, int point) {
+    public Quiz(String name, String URL, int numQuestion, int point, String quizId) {
         this.name = name;
-        this.position = position;
         this.URL = URL;
         this.numQuestion = numQuestion;
         this.point = point;
+        this.quizId = quizId;
     }
 
     public Quiz() {
+    }
+
+    public String getQuizId() {
+        return quizId;
+    }
+
+    public void setQuizId(String quizId) {
+        this.quizId = quizId;
     }
 
     public String getName() {
@@ -24,14 +32,6 @@ public class Quiz {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Integer getPosition() {
-        return position;
-    }
-
-    public void setPosition(Integer position) {
-        this.position = position;
     }
 
     public String getURL() {
