@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#2F5D62"
     tools:context=".addNewQuiz">
 
     <LinearLayout
@@ -21,18 +22,21 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Quiz Name" />
+            android:text="Quiz Name"
+            android:textColor="#DFEEEA"/>
 
         <EditText
             android:id="@+id/quiz_name_AddNewQuiz"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxLines="1" />
+            android:maxLines="1"
+            android:textColor="#DFEEEA"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Quiz URL" />
+            android:text="Quiz URL"
+            android:textColor="#DFEEEA"/>
 
         <LinearLayout
             android:layout_width="match_parent"

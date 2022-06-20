@@ -57,7 +57,7 @@ public class quizRecyclerAdapter extends RecyclerView.Adapter<quizRecyclerAdapte
             }
 
             holder.name.setText(quiz.getName());
-            holder.point.setText(quiz.getPoint()+"/"+quiz.getNumQuestion());
+            holder.point.setText(quiz.getPosition()+"/"+quiz.getNumQuestion());
     }
 
     @Override

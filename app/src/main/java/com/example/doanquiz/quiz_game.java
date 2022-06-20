@@ -30,9 +30,9 @@ import java.util.Map;
 
 public class quiz_game extends AppCompatActivity implements View.OnClickListener {
 
-    private static final String SCORE_ID = "";
 
     private String url;
+    private TextView pointTV;
     private int point;
     private String title;
     private String quizId;
@@ -43,9 +43,8 @@ public class quiz_game extends AppCompatActivity implements View.OnClickListener
     private Button falseButton;
     private ImageButton nextButton;
     private ImageButton prevButton;
-    private int currentQuestionIndex = 0;
+    private int position = 0;
     private int myScore=0;
-    private int highscore=0;
     private int storeQuestionIndex=99999;
     private List<Question> questionList;
 
@@ -66,23 +65,26 @@ public class quiz_game extends AppCompatActivity implements View.OnClickListener
         nextButton = findViewById(R.id.next_Button);
         prevButton = findViewById(R.id.previous_Button);
         title_TV=findViewById(R.id.title);
+        pointTV=findViewById(R.id.point_quizGame);
 
         Bundle extras=getIntent().getExtras();
         if(extras!=null){
-            currentQuestionIndex=extras.getInt("quizPoint");
+            point=extras.getInt("quizPoint");
+            position =extras.getInt("quizPosition");
             url=extras.getString("quizUrl");
             title=extras.getString("quizTitle");
             quizId=extras.getString("quizId");
             title_TV.setText(title);
         }
+        pointTV.setText("point : "+point);
         myScore=point;
-        currentQuestionIndex++;
+        position++;
         questionList = new addNewQuiz().getQuestions(url,new AnswerListAsyncResponse() {
             @SuppressLint("SetTextI18n")
             @Override
             public void processFinished(ArrayList<Question> questionArrayList) {
-                questionTextview.setText(questionArrayList.get(currentQuestionIndex).getAnswer());
-                counterTextview.setText(currentQuestionIndex + " / " + questionArrayList.size());
+                questionTextview.setText(questionArrayList.get(position).getAnswer());
+                counterTextview.setText(position + " / " + questionArrayList.size());
                 Log.d("Inside", "processFinished: " + questionArrayList);
             }
         });
@@ -100,15 +102,17 @@ public class quiz_game extends AppCompatActivity implements View.OnClickListener
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.previous_Button:
-                if (currentQuestionIndex > 0) {
-                    currentQuestionIndex = (currentQuestionIndex - 1) % questionList.size();
+                if (position > 0) {
+                    position = (position - 1) % questionList.size();
                     updateQuestion();
+                    updatePositionFireBase();
                 }
                 break;
-//            case R.id.next_Button:
-//                currentQuestionIndex = (currentQuestionIndex + 1) % questionList.size();
-//                updateQuestion();
-//                break;
+            case R.id.next_Button:
+                position = (position + 1) % questionList.size();
+                updateQuestion();
+                updatePositionFireBase();
+                break;
             case R.id.true_Button:
                 checkAnswer(true);
                 updateQuestion();
@@ -121,28 +125,49 @@ public class quiz_game extends AppCompatActivity implements View.OnClickListener
     }
 
     private void checkAnswer(boolean userChooseCorrect) {
-        boolean answerIsTrue=questionList.get(currentQuestionIndex).isAnswerTrue();
+        boolean answerIsTrue=questionList.get(position).isAnswerTrue();
         int toastMessageID=0;
         if(userChooseCorrect==answerIsTrue)
         {
-            if(storeQuestionIndex!=currentQuestionIndex) {
-                myScore = myScore + 100;
-                storeQuestionIndex=currentQuestionIndex;
+            if(storeQuestionIndex!= position) {
+                myScore = myScore + 1;
+                storeQuestionIndex= position;
             }
 //            toastMessageID=R.string.correct_answer;
-            fadeView();
             updateScoreFireBase();
+            updateScore();
+            fadeView();
+            position = (position + 1) % questionList.size();
+            updateQuestion();
+            updatePositionFireBase();
         }else {
-            if(storeQuestionIndex!=currentQuestionIndex) {
-                if(myScore>0) {
-                    myScore = myScore - 100;
-                }
-                storeQuestionIndex=currentQuestionIndex;
-            }
 //            toastMessageID=R.string.wrong_answer;
             shakeAnimtaion();
+            position = (position + 1) % questionList.size();
+            updateQuestion();
+            updatePositionFireBase();
         }
 //        Toast.makeText(quiz_game.this,toastMessageID,Toast.LENGTH_SHORT).show();
+    }
+
+    private void updateScore() {
+        pointTV.setText("Point : "+myScore);
+    }
+
+    private void updatePositionFireBase() {
+        collectionReference.whereEqualTo("quizId",quizId)
+                .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if(task.isSuccessful()){
+                    for(QueryDocumentSnapshot user : task.getResult()){
+                        Map<String,Integer> updateScore=new HashMap<>();
+                        updateScore.put("position", position);
+                        collectionReference.document(user.getId()).set(updateScore, SetOptions.merge());
+                    }
+                }
+            }
+        });
     }
 
     private void updateScoreFireBase() {
@@ -153,7 +178,7 @@ public class quiz_game extends AppCompatActivity implements View.OnClickListener
                 if(task.isSuccessful()){
                     for(QueryDocumentSnapshot user : task.getResult()){
                         Map<String,Integer> updateScore=new HashMap<>();
-                        updateScore.put("point",currentQuestionIndex);
+                        updateScore.put("point", myScore);
                         collectionReference.document(user.getId()).set(updateScore, SetOptions.merge());
                     }
                 }
@@ -164,9 +189,9 @@ public class quiz_game extends AppCompatActivity implements View.OnClickListener
 
     @SuppressLint("SetTextI18n")
     private void updateQuestion() {
-        String question = questionList.get(currentQuestionIndex).getAnswer();
+        String question = questionList.get(position).getAnswer();
         questionTextview.setText(question);
-        counterTextview.setText(currentQuestionIndex + " / " + questionList.size());
+        counterTextview.setText(position + " / " + questionList.size());
     }
 
 
@@ -185,7 +210,7 @@ public class quiz_game extends AppCompatActivity implements View.OnClickListener
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                questionTextview.setTextColor(Color.parseColor("#FFAF00"));
+                questionTextview.setTextColor(Color.parseColor("#FF000000"));
             }
 
             @Override
@@ -212,9 +237,7 @@ public class quiz_game extends AppCompatActivity implements View.OnClickListener
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                questionTextview.setTextColor(Color.parseColor("#FFAF00"));
-                currentQuestionIndex = (currentQuestionIndex + 1) % questionList.size();
-                updateQuestion();
+                questionTextview.setTextColor(Color.parseColor("#FF000000"));
             }
 
             @Override

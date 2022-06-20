@@ -5,13 +5,15 @@
       <map>
         <entry key="..\:/Users/admin/AndroidStudioProjects/DoAnQuiz/app/src/main/res/drawable/ic_group.xml" value="0.1" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/DoAnQuiz/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/DoAnQuiz/app/src/main/res/drawable/question_box.xml" value="0.114" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/DoAnQuiz/app/src/main/res/drawable/quiz_box.xml" value="0.1" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/DoAnQuiz/app/src/main/res/drawable/quiz_box_2.xml" value="0.1" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/DoAnQuiz/app/src/main/res/drawable/quiz_box_3.xml" value="0.1" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/DoAnQuiz/app/src/main/res/drawable/quiz_box_4.xml" value="0.1" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/DoAnQuiz/app/src/main/res/drawable/quiz_box_5.xml" value="0.1" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/DoAnQuiz/app/src/main/res/layout/activity_add_new_quiz.xml" value="0.24010416666666667" />
-        <entry key="..\:/Users/admin/AndroidStudioProjects/DoAnQuiz/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/DoAnQuiz/app/src/main/res/layout/activity_main.xml" value="0.176" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/DoAnQuiz/app/src/main/res/layout/activity_quiz_game.xml" value="0.264" />
         <entry key="..\:/Users/admin/AndroidStudioProjects/DoAnQuiz/app/src/main/res/layout/quiz_row.xml" value="0.2" />
       </map>
     </option>

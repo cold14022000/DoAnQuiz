@@ -3,6 +3,7 @@ package com.example.doanquiz;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -19,10 +20,20 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import org.opencv.android.OpenCVLoader;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
+    static {
+        if(OpenCVLoader.initDebug()){
+            Log.d("MainActivity", "static initializer: OpenCV is loaded");
+        }else{
+            Log.d("MainActivity", "static initializer: OpenCV is not loaded");
+        }
+    }
 
     private TextView tv_NoItemInApp;
     private ImageView add_item_noItemInApp,add_item_corner;
@@ -106,6 +117,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 intent.putExtra("quizUrl", quizList.get(position).getURL());
                 intent.putExtra("quizPoint", quizList.get(position).getPoint());
                 intent.putExtra("quizId", quizList.get(position).getQuizId());
+                intent.putExtra("quizPosition",quizList.get(position).getPosition());
                 startActivity(intent);
             }
         };

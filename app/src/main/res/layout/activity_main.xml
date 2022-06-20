@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#2F5D62"
     tools:context=".MainActivity">
 
     <androidx.recyclerview.widget.RecyclerView
@@ -26,6 +27,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@id/add_button_noItem"
         android:text="No Quiz Left"
+        android:textColor="#DFEEEA"
         android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

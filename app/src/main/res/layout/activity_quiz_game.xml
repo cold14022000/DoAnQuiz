@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#2F5D62"
     tools:context=".quiz_game">
 
     <TextView
@@ -12,60 +13,75 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="108dp"
         android:text="Quiz"
+        android:textColor="#DFEEEA"
         android:textSize="32sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textColor="#FFAF00"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/counter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
         android:gravity="end"
         android:hint="1/100"
-        android:textColorHint="#FFAF00"
-        android:textColor="#FFAF00"
+        android:textColor="#DFEEEA"
+        android:textColorHint="#DFEEEA"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@id/question"
         app:layout_constraintEnd_toEndOf="@id/question" />
+
+    <TextView
+        android:id="@+id/point_quizGame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:gravity="end"
+        android:hint="Point : 10"
+        android:textColor="#DFEEEA"
+        android:textColorHint="#DFEEEA"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@id/question"
+        app:layout_constraintStart_toStartOf="@id/question" />
 
 
     <TextView
         android:id="@+id/question"
         android:layout_width="351dp"
         android:layout_height="108dp"
+        android:background="@drawable/question_box"
         android:gravity="center"
-        android:textColor="#FFAF00"
-        android:textSize="16sp"
         android:hint="hello this is where you're going to put your question"
-        android:background="@color/black"
-        android:textColorHint="#FFAF00"
+        android:paddingHorizontal="15dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/title"
-        app:layout_constraintVertical_bias=".2" />
+        app:layout_constraintVertical_bias=".27" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@id/question"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/question"
         app:layout_constraintVertical_bias=".2">
 
         <ImageButton
             android:id="@+id/previous_Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:backgroundTint="#0F0F0D"
-            app:srcCompat="@android:drawable/ic_media_previous"
             android:layout_margin="5dp"
-            android:contentDescription="back"/>
+            android:layout_weight="1"
+            android:contentDescription="back"
+            app:backgroundTint="#5E8B7E"
+            app:srcCompat="@android:drawable/ic_media_previous" />
 
         <Button
             android:id="@+id/true_Button"
@@ -73,30 +89,29 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:layout_weight="1"
-            android:backgroundTint="#0F0F0D"
+            android:backgroundTint="#47EC47"
             android:text="True"
-            android:textColor="#FFAF00" />
+            android:textColor="#000000" />
 
         <Button
             android:id="@+id/false_Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="false"
-            android:layout_weight="1"
             android:layout_margin="5dp"
-            android:backgroundTint="#0F0F0D"
-            android:textColor="#FFAF00"/>
+            android:layout_weight="1"
+            android:backgroundTint="#ED2626"
+            android:text="false"
+            android:textColor="#FFFFFF" />
 
         <ImageButton
             android:id="@+id/next_Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:visibility="invisible"
-            app:srcCompat="@android:drawable/ic_media_next"
             android:layout_margin="5dp"
+            android:layout_weight="1"
             android:contentDescription="next"
-            app:backgroundTint="#0F0F0D"/>
+            app:backgroundTint="#5E8B7E"
+            app:srcCompat="@android:drawable/ic_media_next" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

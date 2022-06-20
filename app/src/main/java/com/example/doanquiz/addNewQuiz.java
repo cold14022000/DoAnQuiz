@@ -92,6 +92,7 @@ public class addNewQuiz extends AppCompatActivity {
 
             Quiz quiz=new Quiz();
             quiz.setPoint(0);
+            quiz.setPosition(0);
             quiz.setNumQuestion(numQuestion);
             quiz.setName(name);
             quiz.setURL(Url);
